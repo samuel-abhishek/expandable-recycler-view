@@ -115,7 +115,6 @@ public class ExpandAbilitySlice extends AbilitySlice {
         };
         myGroupContainer.setItemProvider(expandableListAdapter);
 
-
         expandableListAdapter.setOnItemClickListener((component, position) -> {
             String clickedItem = myGroupNameItem.get(position);
             checkChild(clickedItem, expandableListAdapter);
@@ -123,10 +122,9 @@ public class ExpandAbilitySlice extends AbilitySlice {
 
         //To toggle the Classic Group Item
         tooglebtn.setClickedListener(component -> {
-            String clickedItem = "Classic";
+            String clickedItem = ResUtil.getString(this, ResourceTable.String_item_Classic);
             checkChild(clickedItem, expandableListAdapter);
         });
-
     }
 
     // to check whether to add or remove the child items

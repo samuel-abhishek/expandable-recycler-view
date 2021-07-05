@@ -91,7 +91,6 @@ public class MultiTypeListAbilitySlice extends AbilitySlice {
         myFavouriteItem.add(ResUtil.getString(this, ResourceTable.String_item_child_Bluegrass1));
     }
 
-
     /**
      * This method is used to prepare adapter for list data.
      */
@@ -149,7 +148,6 @@ public class MultiTypeListAbilitySlice extends AbilitySlice {
                 showToast();
             }
         });
-
     }
 
     /**

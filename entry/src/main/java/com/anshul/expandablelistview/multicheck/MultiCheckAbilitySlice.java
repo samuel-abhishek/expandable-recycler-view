@@ -116,7 +116,6 @@ public class MultiCheckAbilitySlice extends AbilitySlice {
                         holder.setGroupImage(ResourceTable.Id_ArrowUpDownIcon, ResourceTable.Media_arrow_Up,
                                 ShapeElement.OVAL, Image.ScaleMode.CENTER, ResourceTable.Color_back_white);
                     }
-
                 } else {
                     // Add child items to list
                     holder.makeInvisibleImage(ResourceTable.Id_ArrowUpDownIcon);

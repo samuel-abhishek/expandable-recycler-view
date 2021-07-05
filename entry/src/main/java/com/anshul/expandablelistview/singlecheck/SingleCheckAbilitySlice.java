@@ -22,7 +22,6 @@ import ohos.agp.utils.Color;
  * Single Check Abilty Slice.
  */
 public class SingleCheckAbilitySlice extends AbilitySlice {
-
     private ExpandableListContainer myGroupContainer;
     private ArrayList<ParentChild> myGroupNameItem = new ArrayList<>();
     private ArrayList<String> myTempGroupNameItem = new ArrayList<>();
