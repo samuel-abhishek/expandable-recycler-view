@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "back_green",
+      "value": "#A2C955"
+    },
+    {
+      "name": "text_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "back_gray",
+      "value": "#F0F0F0"
+    },
+    {
+      "name": "footer_text_color",
+      "value": "#000000"
+    },
+    {
+      "name": "back_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "back_black",
+      "value": "#000000"
+    }
+  ]
+}
