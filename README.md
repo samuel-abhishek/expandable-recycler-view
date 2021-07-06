@@ -1,4 +1,4 @@
-# ExpandableListView
+# ExpandableRecyclerView
 Custom BaseItemProvider for expanding and collapsing groups.
 
 # Source
