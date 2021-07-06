@@ -1,15 +1,11 @@
 {
   "color": [
     {
-      "name": "back_green",
-      "value": "#A2C955"
-    },
-    {
       "name": "text_white",
       "value": "#FFFFFF"
     },
     {
-      "name": "back_gray",
+      "name": "gray",
       "value": "#F0F0F0"
     },
     {
@@ -17,11 +13,11 @@
       "value": "#000000"
     },
     {
-      "name": "back_white",
+      "name": "white",
       "value": "#FFFFFF"
     },
     {
-      "name": "back_black",
+      "name": "black",
       "value": "#000000"
     }
   ]

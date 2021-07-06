@@ -107,6 +107,14 @@
     {
       "name": "text_22fp",
       "value": "22fp"
+    },
+    {
+      "name": "group_text_size",
+      "value": "20fp"
+    },
+    {
+      "name": "child_text_size",
+      "value": "15fp"
     }
   ]
 }

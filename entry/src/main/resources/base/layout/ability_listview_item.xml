@@ -32,8 +32,6 @@
                 ohos:align_parent_start="true"
                 ohos:padding="$float:padding_5vp"
                 ohos:start_margin="$float:margin_10vp"
-                ohos:text_color="$color:text_white"
-                ohos:text_size="$float:text_20fp"
                 ohos:vertical_center="true"/>
 
             <Image
@@ -57,7 +55,7 @@
                 ohos:width="$float:height_20vp"/>
 
             <Image
-                ohos:id="$+id:ArrowUpDownIcon"
+                ohos:id="$+id:ArrowIcon"
                 ohos:height="$float:height_30vp"
                 ohos:width="$float:width_30vp"
                 ohos:align_parent_end="true"
@@ -68,9 +66,4 @@
         </DependentLayout>
     </DirectionalLayout>
 
-    <DirectionalLayout
-        ohos:id="$+id:childDivider"
-        ohos:height="$float:height_1vp"
-        ohos:width="match_parent"
-        ohos:start_margin="$float:margin_10vp"/>
 </DirectionalLayout>

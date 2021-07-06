@@ -14,7 +14,7 @@
             ohos:height="match_parent"
             ohos:width="match_parent">
 
-            <com.example.expandablelist.ExpandableListContainer
+            <com.thoughtbot.expandablecheckrecyclerview.ExpandableListContainer
                 ohos:id="$+id:lcGroupItems_multitype"
                 ohos:height="match_content"
                 ohos:width="match_parent"
