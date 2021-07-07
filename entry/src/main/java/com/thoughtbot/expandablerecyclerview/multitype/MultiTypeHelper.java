@@ -9,10 +9,10 @@ import ohos.agp.utils.Color;
 import ohos.agp.utils.TextAlignment;
 import ohos.agp.window.dialog.ToastDialog;
 import ohos.app.Context;
-import com.anshul.expandablelistview.ResourceTable;
 import com.thoughtbot.expandablecheckrecyclerview.ExpandableListAdapter;
 import com.thoughtbot.expandablecheckrecyclerview.ExpandableListContainer;
 import com.thoughtbot.expandablecheckrecyclerview.util.ResUtil;
+import com.thoughtbot.expandablerecyclerview.ResourceTable;
 import java.util.ArrayList;
 import java.util.HashMap;
 

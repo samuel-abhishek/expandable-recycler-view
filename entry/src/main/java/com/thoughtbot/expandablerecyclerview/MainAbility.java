@@ -1,8 +1,8 @@
 package com.thoughtbot.expandablerecyclerview;
 
-import com.thoughtbot.expandablerecyclerview.slice.MainAbilitySlice;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
+import com.thoughtbot.expandablerecyclerview.slice.MainAbilitySlice;
 
 /**
  * Main Ability.

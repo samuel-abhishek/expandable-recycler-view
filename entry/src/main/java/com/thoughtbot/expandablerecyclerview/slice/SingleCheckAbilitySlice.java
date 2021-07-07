@@ -4,7 +4,7 @@ import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.ComponentContainer;
 import ohos.agp.components.LayoutScatter;
-import com.anshul.expandablelistview.ResourceTable;
+import com.thoughtbot.expandablerecyclerview.ResourceTable;
 import com.thoughtbot.expandablerecyclerview.singlecheck.SingleCheckHelper;
 
 /**

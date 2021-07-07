@@ -3,7 +3,7 @@ package com.thoughtbot.expandablerecyclerview.slice;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
-import com.anshul.expandablelistview.ResourceTable;
+import com.thoughtbot.expandablerecyclerview.ResourceTable;
 
 /**
  * MainAbility that calls each.
