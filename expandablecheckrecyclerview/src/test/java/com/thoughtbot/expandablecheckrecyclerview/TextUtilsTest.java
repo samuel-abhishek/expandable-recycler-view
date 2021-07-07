@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.thoughtbot.expandablecheckrecyclerview.testutil;
 
-import com.thoughtbot.expandablecheckrecyclerview.util.TextUtils;
+package com.thoughtbot.expandablecheckrecyclerview;
+
 import org.junit.Test;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import com.thoughtbot.expandablecheckrecyclerview.util.TextUtils;
 
 public class TextUtilsTest {
 
