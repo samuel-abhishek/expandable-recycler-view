@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.thoughtbot.expandablerecyclerview;
 
 import ohos.aafwk.ability.AbilityPackage;
