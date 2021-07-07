@@ -27,7 +27,7 @@ dependencies {
 # Usage
 Let's say you are a rock star 🎸 and you want to build an app to show a list of your favorite Genres with a list of their top Artists.
 
-First create the Ability Slices and call the helper class by passing view and context as arguments.
+First create the Ability Slice and call the helper class by passing view and context as arguments and then call the `initViews` method of the helper class.
 ``` java
 public class ExpandAbilitySlice extends AbilitySlice {
     @Override
@@ -44,16 +44,16 @@ public class ExpandAbilitySlice extends AbilitySlice {
 Inside the helper class, Initialize the view components by `initViews` method.
 ``` java
 public void initViews() {
-        getGroupItems();
-        getGroupIcons();
-        tooglebtn = (Button) rootView.findComponentById(ResourceTable.Id_toogle);
-        ScrollView parentLayout = (ScrollView) rootView.findComponentById(ResourceTable.Id_root_expand);
-        parentLayout.setBackground(getShapeElement(ResUtil.getColor(context, ResourceTable.Color_white)));
-        mGroupContainer = (ExpandableListContainer) rootView.findComponentById(ResourceTable.Id_lcGroupItems_expand);
-        prepareExpandableListAdapter();
-    }
+	getGroupItems();
+	getGroupIcons();
+	tooglebtn = (Button) rootView.findComponentById(ResourceTable.Id_toogle);
+	ScrollView parentLayout = (ScrollView) rootView.findComponentById(ResourceTable.Id_root_expand);
+	parentLayout.setBackground(getShapeElement(ResUtil.getColor(context, ResourceTable.Color_white)));
+	mGroupContainer = (ExpandableListContainer) rootView.findComponentById(ResourceTable.Id_lcGroupItems_expand);
+	prepareExpandableListAdapter();
+}
 ```
-Then Add all the Genre items in `mGroupNameItem` and their corresponding image in `mGroupImageItem `
+Then, Add all the Genre items in `mGroupNameItem` and their corresponding image in `mGroupImageItem `
 ``` java
 private void getGroupItems() {
         mGroupNameItem.add(ResUtil.getString(context, ResourceTable.String_item_Rock));
@@ -62,82 +62,80 @@ private void getGroupItems() {
         mGroupNameItem.add(ResUtil.getString(context, ResourceTable.String_item_Salsa));
         mGroupNameItem.add(ResUtil.getString(context, ResourceTable.String_item_Bluegrass));
         mFinalGroupNameItem.addAll(mGroupNameItem);
-    }
+}
 ```
 ``` java
-    private void getGroupIcons() {
-        mGroupImageItem.add(ResourceTable.Media_rock);
-        mGroupImageItem.add(ResourceTable.Media_jazz);
-        mGroupImageItem.add(ResourceTable.Media_classic);
-        mGroupImageItem.add(ResourceTable.Media_salsa);
-        mGroupImageItem.add(ResourceTable.Media_bluegrass);
-    }
+private void getGroupIcons() {
+	mGroupImageItem.add(ResourceTable.Media_rock);
+	mGroupImageItem.add(ResourceTable.Media_jazz);
+	mGroupImageItem.add(ResourceTable.Media_classic);
+	mGroupImageItem.add(ResourceTable.Media_salsa);
+	mGroupImageItem.add(ResourceTable.Media_bluegrass);
+}
 ```
-Now the binding of the data to the view is done inside the `prepareExpandableListAdapter` method. 
+Now the binding of the data to the view is done inside the `prepareExpandableListAdapter` method. Here, we will decide whether the item is a child or a group item by checking whether it is present in `mTempChildNameItem` or not.
 ``` java
- ExpandableListAdapter<String> expandableListAdapter = new ExpandableListAdapter<String>(context,
+ExpandableListAdapter<String> expandableListAdapter = new ExpandableListAdapter<String>(context,
                 mGroupNameItem, mGroupImageItem, ResourceTable.Layout_ability_listview_item) {
-            @Override
-            protected void bind(ViewHolder holder, String text, Integer image, int position) {
-                if (!mTempChildNameItem.contains(text)) {
-                    // Set green background for parent/Group
-                    holder.makeInvisibleButton(ResourceTable.Id_checkbtn);
-                    holder.makeInvisibleImage(ResourceTable.Id_childstar);
-                    holder.setGroupItemBackground(ResourceTable.Id_groupContainer, ResourceTable.Color_white);
-                    holder.setText(ResourceTable.Id_tvGroupTitle, text, Color.GRAY,
-                            ResUtil.getIntDimen(context, ResourceTable.Float_group_text_size));
-                    holder.setGroupImage(ResourceTable.Id_ivGroupIcon, image,
-                            ShapeElement.RECTANGLE, Image.ScaleMode.STRETCH, ResourceTable.Color_white);
-                    if (!mTempGroupNameItem.contains(text)) {
-                        // Set divider & arrow down icon
-                        holder.setGroupImage(ResourceTable.Id_ArrowIcon, ResourceTable.Media_arrow_Down,
-                                ShapeElement.OVAL, Image.ScaleMode.CENTER, ResourceTable.Color_white);
-                    } else {
-                        // Remove divider & arrow up icon
-                        holder.setGroupImage(ResourceTable.Id_ArrowIcon, ResourceTable.Media_arrow_Up,
-                                ShapeElement.OVAL, Image.ScaleMode.CENTER, ResourceTable.Color_white);
-                    }
-                } else {
-                    // Add child items to list
-                    holder.makeInvisibleButton(ResourceTable.Id_checkbtn);
-                    holder.makeInvisibleImage(ResourceTable.Id_checkbtn);
-                    holder.setText(ResourceTable.Id_tvGroupTitle, text, Color.GRAY,
-                            ResUtil.getIntDimen(context, ResourceTable.Float_child_text_size));
-                }
-            }
-        };
-        mGroupContainer.setItemProvider(expandableListAdapter);
+    @Override
+    protected void bind(ViewHolder holder, String text, Integer image, int position) {
+	if (!mTempChildNameItem.contains(text)) {
+	    // Set green background for parent/Group
+	    holder.makeInvisibleButton(ResourceTable.Id_checkbtn);
+	    holder.makeInvisibleImage(ResourceTable.Id_childstar);
+	    holder.setGroupItemBackground(ResourceTable.Id_groupContainer, ResourceTable.Color_white);
+	    holder.setText(ResourceTable.Id_tvGroupTitle, text, Color.GRAY,
+		    ResUtil.getIntDimen(context, ResourceTable.Float_group_text_size));
+	    holder.setGroupImage(ResourceTable.Id_ivGroupIcon, image,
+		    ShapeElement.RECTANGLE, Image.ScaleMode.STRETCH, ResourceTable.Color_white);
+	    if (!mTempGroupNameItem.contains(text)) {
+		// Set divider & arrow down icon
+		holder.setGroupImage(ResourceTable.Id_ArrowIcon, ResourceTable.Media_arrow_Down,
+			ShapeElement.OVAL, Image.ScaleMode.CENTER, ResourceTable.Color_white);
+	    } else {
+		// Remove divider & arrow up icon
+		holder.setGroupImage(ResourceTable.Id_ArrowIcon, ResourceTable.Media_arrow_Up,
+			ShapeElement.OVAL, Image.ScaleMode.CENTER, ResourceTable.Color_white);
+	    }
+	} else {
+	    // Add child items to list
+	    holder.makeInvisibleButton(ResourceTable.Id_checkbtn);
+	    holder.makeInvisibleImage(ResourceTable.Id_checkbtn);
+	    holder.setText(ResourceTable.Id_tvGroupTitle, text, Color.GRAY,
+		    ResUtil.getIntDimen(context, ResourceTable.Float_child_text_size));
+	}
+    }
+};
+mGroupContainer.setItemProvider(expandableListAdapter);
 ```
-Then we set the onItemClickListener and call the `checkChild` method to check if the clicketItem is a GroupItem (i.e. Genre) or the ChildItem (i.e. Artist).
+Then we set the onItemClickListener and call the `checkChild` method to check if the clickedItem is a Group item (i.e. Genre) or the Child item (i.e. Artist).
 ``` java
-    expandableListAdapter.setOnItemClickListener((component, position) -> {
-            String clickedItem = mGroupNameItem.get(position);
-            checkChild(clickedItem, expandableListAdapter);
-        });
+expandableListAdapter.setOnItemClickListener((component, position) -> {
+    String clickedItem = mGroupNameItem.get(position);
+    checkChild(clickedItem, expandableListAdapter);
+});
 ```
-`mTempGroupNameItem` contains all the GroupItem that are in expand state and `mTempChildNameItem` will contains child of such GroupItems.
-While collapsing the group, we will remove the groupItem from `mTempGroupNameItem` and their childItems from `mTempChildNameItem`.
-
-Now, if the clickedItem is not there in `mTempChildNameItem` , it means it is the GroupItem otherwise it is the Childitem.
+`mTempGroupNameItem` contains all the Group item that are in expand state and `mTempChildNameItem` will contains child of such GroupItems.
+While collapsing the group, we will remove the group items from `mTempGroupNameItem` and their child items from `mTempChildNameItem`.
 ``` java
 private void checkChild(String clickedItem, ExpandableListAdapter<String> expandableListAdapter) {
-        if (!mTempChildNameItem.contains(clickedItem)) {
-            if (mTempGroupNameItem.contains(clickedItem)) {
-                int actualItemPosition = mFinalGroupNameItem.indexOf(clickedItem);
-                removeChildItems(actualItemPosition, clickedItem);
-                mTempGroupNameItem.remove(clickedItem);
-            } else {
-                int actualItemPosition = mFinalGroupNameItem.indexOf(clickedItem);
-                addChildItems(actualItemPosition, clickedItem);
-                mTempGroupNameItem.add(clickedItem);
-            }
-            expandableListAdapter.setData(mGroupNameItem);
-        } else {
-            showToast();
-        }
-    }
+	if (!mTempChildNameItem.contains(clickedItem)) {
+	    if (mTempGroupNameItem.contains(clickedItem)) {
+		int actualItemPosition = mFinalGroupNameItem.indexOf(clickedItem);
+		removeChildItems(actualItemPosition, clickedItem);
+		mTempGroupNameItem.remove(clickedItem);
+	    } else {
+		int actualItemPosition = mFinalGroupNameItem.indexOf(clickedItem);
+		addChildItems(actualItemPosition, clickedItem);
+		mTempGroupNameItem.add(clickedItem);
+	    }
+	    expandableListAdapter.setData(mGroupNameItem);
+	} else {
+	    showToast();
+	}
+}
 ```
-If it is the GroupItem and it is not there in `mTempGroupNameItem`, that means we have to expand that GroupItem. For that, we will add this `clickedItem` to `mTempGroupNameItem` and their corresponding child items to `mTempChildNameItem`.
+If it is the Group item and it is not there in `mTempGroupNameItem`, that means we have to expand it and then add it to `mTempGroupNameItem` and their corresponding child items to `mTempChildNameItem`.
 ``` java
 private void addChildItems(int actualPosition, String clickedItem) {
         String[] childItems = childItems().get(actualPosition);
@@ -148,9 +146,9 @@ private void addChildItems(int actualPosition, String clickedItem) {
             mTempChildNameItem.add(item);
             mGroupImageItem.add(itemPositionFromGroup, ResourceTable.Media_star);
         }
-    }
+}
 ``` 
-If the clickedItem is already there in `mTempGroupNameItem`, then we have to collapse that GroupItem and we have to remove it from `mTempGroupNameItem` and the 
+If the `clickedItem` is already there in `mTempGroupNameItem`, then we have to collapse it and then remove it from `mTempGroupNameItem` and the 
 corresponding child items from `mTempChildNameItem`.
 ``` java
 private void removeChildItems(int position, String clickedItem) {
@@ -161,8 +159,58 @@ private void removeChildItems(int position, String clickedItem) {
             mGroupImageItem.remove(itemPositionFromGroup + 1);
             mTempChildNameItem.remove(name);
         }
-    }
+}
 ``` 
+### FavouriteItems
+We can maintain our favorite child items, i.e. favourite Artists, by adding them to an ArrayList `mFavouriteItem`.
+``` java
+private void getFavouriteItems() {
+        mFavouriteItem.add(ResUtil.getString(context, ResourceTable.String_item_child_Rock1));
+        mFavouriteItem.add(ResUtil.getString(context, ResourceTable.String_item_child_Rock4));
+        mFavouriteItem.add(ResUtil.getString(context, ResourceTable.String_item_child_Jazz1));
+        mFavouriteItem.add(ResUtil.getString(context, ResourceTable.String_item_child_Jazz2));
+        mFavouriteItem.add(ResUtil.getString(context, ResourceTable.String_item_child_Classic2));
+        mFavouriteItem.add(ResUtil.getString(context, ResourceTable.String_item_child_Salsa1));
+        mFavouriteItem.add(ResUtil.getString(context, ResourceTable.String_item_child_Bluegrass1));
+}
+```
+
+### CheckableChildItems
+We are maintaining mSelectedChild, which is a HashMap, and will map the checked item to its parent item. We are updating this HashMap whenever any list item is getting clicked. 
+``` java
+expandableListAdapter.setOnItemClickListener((component, position) -> {
+    ParentChild value = mGroupNameItem.get(position);
+    String clickedItem = value.getChildItem();
+    if (!mTempChildNameItem.contains(clickedItem)) {
+	if (mTempGroupNameItem.contains(clickedItem)) {
+	    int actualItemPosition = mFinalGroupNameItem.indexOf(clickedItem);
+	    removeChildItems(actualItemPosition, position);
+	    mTempGroupNameItem.remove(clickedItem);
+	} else {
+	    int actualItemPosition = mFinalGroupNameItem.indexOf(clickedItem);
+	    addChildItems(actualItemPosition, clickedItem, position);
+	    mTempGroupNameItem.add(clickedItem);
+	}
+	expandableListAdapter.setData(mGroupNameItem);
+    } else {
+	String parentGroup = value.getParentItem();
+	if (mSelectedChild.containsKey(parentGroup)) {
+	    mSelectedChild.remove(parentGroup);
+	}
+	mSelectedChild.put(parentGroup, clickedItem);
+	expandableListAdapter.setData(mGroupNameItem);
+    }
+});
+```
+To handle the case where a child item can be under multiple groups, we have created a class `ParentChild` that will store both the parent and the child name for each of the list items. While rendering the view, we will check only those items whose parent child pair is present in `mSelectedChild` HashMap.
+``` java
+if (mSelectedChild.containsKey(text.getParentItem()) && mSelectedChild.get(text.getParentItem())
+	    .equals(text.getChildItem())) {
+	holder.setChecked(ResourceTable.Id_checkbtn);
+} else {
+	holder.setUnChecked(ResourceTable.Id_checkbtn);
+}
+```
 
 ### Expand Ability
 This will have a list of Group Items (i.e. Genre) and on clicking on it, the group will expand and their corresponding child items (i.e Artist) will be visible.
@@ -171,7 +219,7 @@ we also have `TOGGLE CLASSIC GROUP` button that can automatically expand and col
 ![Expand](https://user-images.githubusercontent.com/77639268/124800679-8f19d500-df73-11eb-91c0-59a336b8a474.png)
 
 ### MultiType Ability
-In this, we will maintain an additional ArrayList of String, i.e. `mFavoriteItem`, that will contain our Favourite Artist name, so that while rendering the view we can add the star image in front of each of the Favourite items.
+In this, we will have our favourite child items. While rendering the view we can add the star image in front of each of those items that are present in `mFavouriteItem`.
 
 ![MultiType](https://user-images.githubusercontent.com/77639268/124800713-97721000-df73-11eb-82da-e8379bed5b35.png)
 
