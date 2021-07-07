@@ -5,10 +5,10 @@ This is an HarmonyOS library with Custom BaseItemProvider for expanding and coll
 This library is inspired by version 1.5 of [ExpandableRecyclerView](https://github.com/thoughtbot/expandable-recycler-view) library.
 
 # Features
-This library allows us to add child items within the group items in a List View. This library also demonstrates how we can set our favourite, single checker and multichecker child Items.
+This library allows us to add child items within the group items in a List View. This library also demonstrates how we can add our favourite, single checker and multichecker child Items.
 
 # Dependency
-1.For using ExpandableCheckRecyclerView module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
+1. For using ExpandableCheckRecyclerView module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
 ``` java
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
@@ -16,7 +16,7 @@ dependencies {
     implementation project(':expandablecheckrecyclerview')
 }
 ```
-2.For using ExpandableCheckRecyclerView in separate application using har file, add the har file in the entry/libs folder and add the dependencies in entry/build.gradle file.
+2. For using ExpandableCheckRecyclerView in separate application using har file, add the har file in the entry/libs folder and add the dependencies in entry/build.gradle file.
 ``` java
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.har'])
@@ -27,7 +27,7 @@ dependencies {
 # Usage
 Let's say you are a rock star 🎸 and you want to build an app to show a list of your favorite Genres with a list of their top Artists.
 
-First create the Ability Slices and call the helper class with view and context as arguments.
+First create the Ability Slices and call the helper class by passing view and context as arguments.
 ``` java
 public class ExpandAbilitySlice extends AbilitySlice {
     @Override
@@ -73,7 +73,7 @@ private void getGroupItems() {
         mGroupImageItem.add(ResourceTable.Media_bluegrass);
     }
 ```
-Now the binding of the data to the view is done inside the `prepareExpandableListAdapter` method.
+Now the binding of the data to the view is done inside the `prepareExpandableListAdapter` method. 
 ``` java
  ExpandableListAdapter<String> expandableListAdapter = new ExpandableListAdapter<String>(context,
                 mGroupNameItem, mGroupImageItem, ResourceTable.Layout_ability_listview_item) {
@@ -116,7 +116,7 @@ Then we set the onItemClickListener and call the `checkChild` method to check if
         });
 ```
 `mTempGroupNameItem` contains all the GroupItem that are in expand state and `mTempChildNameItem` will contains child of such GroupItems.
-While collapsing the group, we will remove the groupItem from mTempGroupNameItem and their childItems from mTempChildNameItem.
+While collapsing the group, we will remove the groupItem from `mTempGroupNameItem` and their childItems from `mTempChildNameItem`.
 
 Now, if the clickedItem is not there in `mTempChildNameItem` , it means it is the GroupItem otherwise it is the Childitem.
 ``` java
@@ -163,5 +163,27 @@ private void removeChildItems(int position, String clickedItem) {
         }
     }
 ``` 
+
+### Expand Ability
+This will have a list of Group Items (i.e. Genre) and on clicking on it, the group will expand and their corresponding child items (i.e Artist) will be visible.
+we also have `TOGGLE CLASSIC GROUP` button that can automatically expand and collapse the Classic group item.
+
+![Expand](https://user-images.githubusercontent.com/77639268/124800679-8f19d500-df73-11eb-91c0-59a336b8a474.png)
+
+### MultiType Ability
+In this, we will maintain an additional ArrayList of String, i.e. `mFavoriteItem`, that will contain our Favourite Artist name, so that while rendering the view we can add the star image in front of each of the Favourite items.
+
+![MultiType](https://user-images.githubusercontent.com/77639268/124800713-97721000-df73-11eb-82da-e8379bed5b35.png)
+
+### SingleCheck Ability
+This will allow the us to select one Artist among the other artists of a particulat Genre. It also provides us with the `CLEAR SELECTIONS` button that will clear all our previous choices. 
+
+![SingleCheck](https://user-images.githubusercontent.com/77639268/124800736-9e008780-df73-11eb-873e-c6a10e6fa5f2.png)
+
+### MultiCheck Ability
+This will allow the us to select multiple Artist of a particulat Genre. It also provides us with the `PROGRAMMATICALLY CHECK BOSTON` button that will automatically check the boston Artist of Rock Genre.
+
+![MultiCheck](https://user-images.githubusercontent.com/77639268/124800751-a2c53b80-df73-11eb-9230-fb77f6aa2781.png)
+
 # License
 ExpandableCheckRecyclerView is Copyright (c) 2016 thoughtbot, inc. It is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/thoughtbot/expandable-recycler-view/blob/master/LICENSE) file.
