@@ -5,16 +5,17 @@ Custom BaseItemProvider for expanding and collapsing groups.
 This library is inspired by version 1.5 of [ExpandableRecyclerView](https://github.com/thoughtbot/expandable-recycler-view) library.
 
 # Features
-Key Features added by this library
+This library allows us to add child items within the group items in a List View. We can also set our favourite child items within a particular group.
+This library also gives us the feature to select a single child item of a particular group item. We can also select multiple child items within a group.
 
 # Dependency
 How to add the dependency
 
 # Usage
 Let's say you are a rock star 🎸 and you want to build an app to show a list of your favorite Genres with a list of their top Artists.
-For that we are creating separate Ability Slices and from each ability Slice we are calling the helper class by passing the View and 
-the context.
-```
+
+First create the Ability Slices and call the helper class with view and context as arguments.
+``` java
 public class ExpandAbilitySlice extends AbilitySlice {
     @Override
     public void onStart(Intent intent) {
@@ -27,8 +28,8 @@ public class ExpandAbilitySlice extends AbilitySlice {
     }
 }
 ```
-Inside our helper class, we are initializing the view components by init method.
-```
+Inside the helper class, Initialize the view components by `initViews` method.
+``` java
 public void initViews() {
         getGroupItems();
         getGroupIcons();
@@ -39,9 +40,8 @@ public void initViews() {
         prepareExpandableListAdapter();
     }
 ```
-
-Then we are adding all the Genre items in mGroupNameItem and their corresponding image in mGroupImageItem 
-```
+Then Add all the Genre items in `mGroupNameItem` and their corresponding image in `mGroupImageItem `
+``` java
 private void getGroupItems() {
         mGroupNameItem.add(ResUtil.getString(context, ResourceTable.String_item_Rock));
         mGroupNameItem.add(ResUtil.getString(context, ResourceTable.String_item_Jazz));
@@ -51,7 +51,7 @@ private void getGroupItems() {
         mFinalGroupNameItem.addAll(mGroupNameItem);
     }
 ```
-```
+``` java
     private void getGroupIcons() {
         mGroupImageItem.add(ResourceTable.Media_rock);
         mGroupImageItem.add(ResourceTable.Media_jazz);
@@ -60,8 +60,8 @@ private void getGroupItems() {
         mGroupImageItem.add(ResourceTable.Media_bluegrass);
     }
 ```
-Then we are binding our data to the view inside the prepareExpandableListAdapter method and then setting the ItemProvider to expandableListAdapter.
-```
+Now the binding of the data to the view is done inside the `prepareExpandableListAdapter` method.
+``` java
  ExpandableListAdapter<String> expandableListAdapter = new ExpandableListAdapter<String>(context,
                 mGroupNameItem, mGroupImageItem, ResourceTable.Layout_ability_listview_item) {
             @Override
@@ -95,17 +95,18 @@ Then we are binding our data to the view inside the prepareExpandableListAdapter
         };
         mGroupContainer.setItemProvider(expandableListAdapter);
 ```
-Then we are setting the onItemClickListener and checking whether the clickedItem is there in mTempChildNameItem or not. If it is not there, 
-it means it is the GroupItem otherwise it is the ChildItem
-```
+Then we set the onItemClickListener and call the `checkChild` method to check if the clicketItem is a GroupItem (i.e. Genre) or the ChildItem (i.e. Artist).
+``` java
     expandableListAdapter.setOnItemClickListener((component, position) -> {
             String clickedItem = mGroupNameItem.get(position);
             checkChild(clickedItem, expandableListAdapter);
         });
 ```
-mTempGroupNameItem contains all the GroupItem that are in expand state and mTempChildNameItem will contains child of such GroupItems.
-While collapsing the group, we will remove the groupItem from mTempGroupNameItem and their childItems to mTempChildNameItem.
-```
+`mTempGroupNameItem` contains all the GroupItem that are in expand state and `mTempChildNameItem` will contains child of such GroupItems.
+While collapsing the group, we will remove the groupItem from mTempGroupNameItem and their childItems from mTempChildNameItem.
+
+Now, if the clickedItem is not there in `mTempChildNameItem` , it means it is the GroupItem otherwise it is the Childitem.
+``` java
 private void checkChild(String clickedItem, ExpandableListAdapter<String> expandableListAdapter) {
         if (!mTempChildNameItem.contains(clickedItem)) {
             if (mTempGroupNameItem.contains(clickedItem)) {
@@ -123,9 +124,8 @@ private void checkChild(String clickedItem, ExpandableListAdapter<String> expand
         }
     }
 ```
-If it is the GroupItem and it If it is not there in mTempGroupNameItem, then we are adding this clickedItem to mTempGroupNameItem and their
-corresponding child items to mTempChildNameItem.
-```
+If it is the GroupItem and it is not there in `mTempGroupNameItem`, that means we have to expand that GroupItem. For that, we will add this `clickedItem` to `mTempGroupNameItem` and their corresponding child items to `mTempChildNameItem`.
+``` java
 private void addChildItems(int actualPosition, String clickedItem) {
         String[] childItems = childItems().get(actualPosition);
         int itemPositionFromGroup = mGroupNameItem.indexOf(clickedItem);
@@ -136,10 +136,10 @@ private void addChildItems(int actualPosition, String clickedItem) {
             mGroupImageItem.add(itemPositionFromGroup, ResourceTable.Media_star);
         }
     }
-```
-If the clickedItem is already there in mTempGroupNameItem, then we are removing it from mTempGroupNameItem and the 
-corresponding child items from mTempChildNameItem.
-```
+``` 
+If the clickedItem is already there in `mTempGroupNameItem`, then we have to collapse that GroupItem and we have to remove it from `mTempGroupNameItem` and the 
+corresponding child items from `mTempChildNameItem`.
+``` java
 private void removeChildItems(int position, String clickedItem) {
         String[] items = childItems().get(position);
         int itemPositionFromGroup = mGroupNameItem.indexOf(clickedItem);
