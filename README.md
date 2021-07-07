@@ -1,15 +1,28 @@
 # ExpandableRecyclerView
-Custom BaseItemProvider for expanding and collapsing groups.
+This is an HarmonyOS library with Custom BaseItemProvider for expanding and collapsing groups.
 
 # Source
 This library is inspired by version 1.5 of [ExpandableRecyclerView](https://github.com/thoughtbot/expandable-recycler-view) library.
 
 # Features
-This library allows us to add child items within the group items in a List View. We can also set our favourite child items within a particular group.
-This library also gives us the feature to select a single child item of a particular group item. We can also select multiple child items within a group.
+This library allows us to add child items within the group items in a List View. This library also demonstrates how we can set our favourite, single checker and multichecker child Items.
 
 # Dependency
-How to add the dependency
+1.For using ExpandableCheckRecyclerView module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
+``` java
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    testImplementation 'junit:junit:4.13'
+    implementation project(':expandablecheckrecyclerview')
+}
+```
+2.For using ExpandableCheckRecyclerView in separate application using har file, add the har file in the entry/libs folder and add the dependencies in entry/build.gradle file.
+``` java
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.har'])
+	testImplementation 'junit:junit:4.13'
+}
+```
 
 # Usage
 Let's say you are a rock star 🎸 and you want to build an app to show a list of your favorite Genres with a list of their top Artists.
@@ -150,3 +163,5 @@ private void removeChildItems(int position, String clickedItem) {
         }
     }
 ``` 
+# License
+ExpandableCheckRecyclerView is Copyright (c) 2016 thoughtbot, inc. It is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/thoughtbot/expandable-recycler-view/blob/master/LICENSE) file.
