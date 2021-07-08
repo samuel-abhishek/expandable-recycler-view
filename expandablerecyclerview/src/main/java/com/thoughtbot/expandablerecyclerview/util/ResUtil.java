@@ -1,4 +1,4 @@
-package com.thoughtbot.expandablecheckrecyclerview.util;
+package com.thoughtbot.expandablerecyclerview.util;
 
 import ohos.app.Context;
 import ohos.global.resource.NotExistException;

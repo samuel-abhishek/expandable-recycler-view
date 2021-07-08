@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.thoughtbot.expandablecheckrecyclerview;
+package com.thoughtbot.expandablerecyclerview;
 
 import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import com.thoughtbot.expandablecheckrecyclerview.util.TextUtils;
+import com.thoughtbot.expandablerecyclerview.util.TextUtils;
 
 public class TextUtilsTest {
 
@@ -40,5 +40,4 @@ public class TextUtilsTest {
         boolean val1= TextUtils.isEmpty("a12b%&c");
         assertFalse(val1);
     }
-
 }

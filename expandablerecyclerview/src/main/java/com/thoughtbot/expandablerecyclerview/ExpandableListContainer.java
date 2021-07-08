@@ -1,4 +1,4 @@
-package com.thoughtbot.expandablecheckrecyclerview;
+package com.thoughtbot.expandablerecyclerview;
 
 import ohos.agp.components.AttrSet;
 import ohos.agp.components.ListContainer;
@@ -8,7 +8,7 @@ import ohos.app.Context;
  * Expandable List Container.
  */
 public class ExpandableListContainer extends ListContainer {
-    private ScrolledListener myOnScrollListener;
+    private ScrolledListener mOnScrollListener;
 
     public ExpandableListContainer(Context context) {
         super(context);
@@ -27,8 +27,8 @@ public class ExpandableListContainer extends ListContainer {
 
     private void init() {
         super.setScrolledListener((component, i, i1, i2, i3) -> {
-            if (myOnScrollListener != null) {
-                myOnScrollListener.onContentScrolled(component, i, i1, i2, i3);
+            if (mOnScrollListener != null) {
+                mOnScrollListener.onContentScrolled(component, i, i1, i2, i3);
             }
         });
     }

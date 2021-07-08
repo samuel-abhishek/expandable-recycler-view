@@ -1,4 +1,4 @@
-package com.thoughtbot.expandablecheckrecyclerview;
+package com.thoughtbot.expandablerecyclerview;
 
 import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_CONTENT;
 import static ohos.agp.components.ComponentContainer.LayoutConfig.MATCH_PARENT;
@@ -17,7 +17,7 @@ import ohos.agp.components.element.ShapeElement;
 import ohos.agp.utils.Color;
 import ohos.app.Context;
 import ohos.media.image.PixelMap;
-import com.thoughtbot.expandablecheckrecyclerview.util.ResUtil;
+import com.thoughtbot.expandablerecyclerview.util.ResUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -26,25 +26,25 @@ import java.util.Optional;
  * Expandable List Adapter class.
  */
 public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
-    private Context context;
-    private List<T> names;
-    private List<Integer> images;
+    private Context mContext;
+    private List<T> mNames;
+    private List<Integer> mImages;
     private int mLayoutId;
-    private OnItemClickListener onItemClickListener;
+    private OnItemClickListener mOnItemClickListener;
 
     /**
      * Constructor to get data from parent class.
      *
      * @param context   context of view
-     * @param mLayoutId resource layout to be drawn
+     * @param layoutId resource layout to be drawn
      * @param names     group item name to be displayed
      * @param images    group item images to be displayed
      */
-    protected ExpandableListAdapter(Context context, List<T> names, List<Integer> images, int mLayoutId) {
-        this.context = context;
-        this.names = names;
-        this.images = images;
-        this.mLayoutId = mLayoutId;
+    protected ExpandableListAdapter(Context context, List<T> names, List<Integer> images, int layoutId) {
+        this.mContext = context;
+        this.mNames = names;
+        this.mImages = images;
+        this.mLayoutId = layoutId;
     }
 
     /**
@@ -53,14 +53,14 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
      * @param data Updated data after collapse & expand the view
      */
     public void setData(List<T> data) {
-        this.names = data;
+        this.mNames = data;
         notifyDataChanged();
     }
 
     @Override
     public int getCount() {
-        if (names != null) {
-            return names.size();
+        if (mNames != null) {
+            return mNames.size();
         } else {
             return 0;
         }
@@ -68,10 +68,10 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
 
     @Override
     public T getItem(int position) {
-        if (names == null || names.size() <= position) {
+        if (mNames == null || mNames.size() <= position) {
             return null;
         } else {
-            return names.get(position);
+            return mNames.get(position);
         }
     }
 
@@ -81,30 +81,30 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
     }
 
     @Override
-    public Component getComponent(int position, Component convertComponent1, ComponentContainer parent) {
-        Component convertComponent = new DirectionalLayout(context);
+    public Component getComponent(int position, Component convertComponent, ComponentContainer parent) {
+        convertComponent = new DirectionalLayout(mContext);
         ((DirectionalLayout) convertComponent).setOrientation(Component.HORIZONTAL);
         ComponentContainer.LayoutConfig layoutConfig = convertComponent.getLayoutConfig();
         layoutConfig.width = MATCH_PARENT;
         layoutConfig.height = MATCH_CONTENT;
         convertComponent.setLayoutConfig(layoutConfig);
 
-        DirectionalLayout dlItemParent = new DirectionalLayout(context);
-        dlItemParent.setLayoutConfig(new DirectionalLayout.LayoutConfig(0, 
+        DirectionalLayout dlItemParent = new DirectionalLayout(mContext);
+        dlItemParent.setLayoutConfig(new DirectionalLayout.LayoutConfig(0,
                 MATCH_CONTENT, TOP, 1));
-        Component childConvertComponent = LayoutScatter.getInstance(context)
+        Component childConvertComponent = LayoutScatter.getInstance(mContext)
                 .parse(mLayoutId, null, false);
 
         childConvertComponent.setClickedListener(component -> {
-            if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(component, position);
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(component, position);
             }
         });
         ViewHolder viewHolder;
         dlItemParent.addComponent(childConvertComponent);
         ((ComponentContainer) convertComponent).addComponent(dlItemParent);
         viewHolder = new ViewHolder(childConvertComponent);
-        bind(viewHolder, getItem(position), images.get(position), position);
+        bind(viewHolder, getItem(position), mImages.get(position), position);
         return convertComponent;
     }
 
@@ -114,7 +114,7 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
      * @param onItemClickListener object of our interface
      */
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+        this.mOnItemClickListener = onItemClickListener;
     }
 
     protected abstract void bind(ViewHolder holder, T s, Integer image, int position);

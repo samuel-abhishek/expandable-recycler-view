@@ -1,4 +1,4 @@
-package com.thoughtbot.expandablecheckrecyclerview.util;
+package com.thoughtbot.expandablerecyclerview.util;
 
 /**
  * A class to check if the input is empty.

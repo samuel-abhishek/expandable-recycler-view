@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.thoughtbot.expandablecheckrecyclerview;
+package com.thoughtbot.expandablerecyclerview;
 
 import ohos.app.Context;
 import ohos.global.resource.Element;
@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import com.thoughtbot.expandablecheckrecyclerview.util.ResUtil;
+import com.thoughtbot.expandablerecyclerview.util.ResUtil;
 import java.io.IOException;
 import java.util.Optional;
 

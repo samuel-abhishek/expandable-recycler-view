@@ -15,13 +15,10 @@
  */
 package com.thoughtbot.expandablerecyclerview;
 
-import com.thoughtbot.expandablecheckrecyclerview.ExpandableListAdapter;
 import ohos.app.Context;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
