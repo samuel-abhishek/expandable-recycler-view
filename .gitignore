@@ -1,7 +1,7 @@
 *.iml
 .gradle
-.idea
-.clang-tidy
+/.idea
+/.clang-tidy
 /local.properties
 /.idea/caches
 /.idea/libraries
