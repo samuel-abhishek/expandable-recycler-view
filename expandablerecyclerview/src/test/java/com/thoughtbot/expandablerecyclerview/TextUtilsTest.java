@@ -16,10 +16,10 @@
 
 package com.thoughtbot.expandablerecyclerview;
 
-import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import com.thoughtbot.expandablerecyclerview.util.TextUtils;
+import org.junit.Test;
 
 public class TextUtilsTest {
 

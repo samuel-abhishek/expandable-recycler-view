@@ -16,23 +16,22 @@
 
 package com.thoughtbot.expandablerecyclerview;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 import ohos.app.Context;
 import ohos.global.resource.Element;
 import ohos.global.resource.NotExistException;
 import ohos.global.resource.ResourceManager;
 import ohos.global.resource.WrongTypeException;
 import ohos.media.image.PixelMap;
+import com.thoughtbot.expandablerecyclerview.util.ResUtil;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import com.thoughtbot.expandablerecyclerview.util.ResUtil;
 import java.io.IOException;
 import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ResUtilTest {
@@ -61,15 +60,12 @@ public class ResUtilTest {
 
     @Test
     public void testgetPathForVerify() {
+
         when(context.getResourceManager()).thenReturn(resourceManager);
         ResUtil.getPathById(context,0);
         try {
             verify(resourceManager,atLeastOnce()).getMediaPath(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NotExistException e) {
-            e.printStackTrace();
-        } catch (WrongTypeException e) {
+        } catch (IOException | NotExistException | WrongTypeException e) {
             e.printStackTrace();
         }
     }
@@ -96,11 +92,7 @@ public class ResUtilTest {
             ResUtil.getColor(context,0);
             verify(resourceManager,atLeastOnce()).getElement(0);
             verify(element,atLeastOnce()).getColor();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NotExistException e) {
-            e.printStackTrace();
-        } catch (WrongTypeException e) {
+        } catch (IOException | NotExistException | WrongTypeException e) {
             e.printStackTrace();
         }
     }
@@ -127,11 +119,7 @@ public class ResUtilTest {
             ResUtil.getDimen(context,0);
             verify(resourceManager,atLeastOnce()).getElement(0);
             verify(element,atLeastOnce()).getFloat();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NotExistException e) {
-            e.printStackTrace();
-        } catch (WrongTypeException e) {
+        } catch (IOException | NotExistException | WrongTypeException e) {
             e.printStackTrace();
         }
     }
@@ -142,11 +130,7 @@ public class ResUtilTest {
         try {
             when(resourceManager.getElement(0)).thenReturn(element);
             when(element.getFloat()).thenReturn((float)0.4);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NotExistException e) {
-            e.printStackTrace();
-        } catch (WrongTypeException e) {
+        } catch (IOException | NotExistException | WrongTypeException e) {
             e.printStackTrace();
         }
         int res= ResUtil.getIntDimen(context,0);
@@ -159,11 +143,7 @@ public class ResUtilTest {
         try {
             when(resourceManager.getElement(0)).thenReturn(element);
             when(element.getFloat()).thenReturn((float)1.6);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NotExistException e) {
-            e.printStackTrace();
-        } catch (WrongTypeException e) {
+        } catch (IOException | NotExistException | WrongTypeException e) {
             e.printStackTrace();
         }
         int res= ResUtil.getIntDimen(context,0);
@@ -191,11 +171,7 @@ public class ResUtilTest {
             ResUtil.getString(context,0);
             verify(resourceManager,atLeastOnce()).getElement(0);
             verify(element,atLeastOnce()).getString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NotExistException e) {
-            e.printStackTrace();
-        } catch (WrongTypeException e) {
+        } catch (IOException | NotExistException | WrongTypeException e) {
             e.printStackTrace();
         }
     }

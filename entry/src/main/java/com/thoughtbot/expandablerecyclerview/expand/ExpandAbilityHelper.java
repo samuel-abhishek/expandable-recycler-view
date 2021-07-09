@@ -161,7 +161,7 @@ public class ExpandAbilityHelper {
      * This method is used to add child items in list.
      *
      * @param actualPosition position of group item
-     * @param clickedItem    name of clicked item
+     * @param clickedItem name of clicked item
      */
     private void addChildItems(int actualPosition, String clickedItem) {
         String[] childItems = childItems().get(actualPosition);
@@ -177,7 +177,7 @@ public class ExpandAbilityHelper {
     /**
      * This method is used to remove child item.
      *
-     * @param position    position of group item
+     * @param position position of group item
      * @param clickedItem name of the clicked item
      */
     private void removeChildItems(int position, String clickedItem) {

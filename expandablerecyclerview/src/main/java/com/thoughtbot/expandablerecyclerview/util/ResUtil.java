@@ -22,7 +22,7 @@ public class ResUtil {
      * get the path from id.
      *
      * @param context the context
-     * @param id      the id
+     * @param id the id
      * @return the path from id
      */
     public static String getPathById(Context context, int id) {
@@ -46,7 +46,7 @@ public class ResUtil {
      * get the color.
      *
      * @param context the context
-     * @param id      the id
+     * @param id the id
      * @return the color
      */
     public static int getColor(Context context, int id) {
@@ -70,7 +70,7 @@ public class ResUtil {
      * get the dimen value.
      *
      * @param context the context
-     * @param id      the id
+     * @param id the id
      * @return get the float dimen value
      */
     public static float getDimen(Context context, int id) {
@@ -94,7 +94,7 @@ public class ResUtil {
      * get the dimen value.
      *
      * @param context the context
-     * @param id      the id
+     * @param id the id
      * @return get the int dimen value
      */
     public static int getIntDimen(Context context, int id) {
@@ -106,7 +106,7 @@ public class ResUtil {
      * get string.
      *
      * @param context the context
-     * @param id      the string id
+     * @param id the string id
      * @return string of the given id
      */
     public static String getString(Context context, int id) {
@@ -130,7 +130,7 @@ public class ResUtil {
      * get the pixel map.
      *
      * @param context the context
-     * @param id      the id
+     * @param id the id
      * @return the pixel map
      */
     public static Optional<PixelMap> getPixelMap(Context context, int id) {

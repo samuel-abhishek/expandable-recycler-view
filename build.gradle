@@ -35,6 +35,9 @@ allprojects {
         maven {
             url 'https://developer.huawei.com/repo/'
         }
+        maven {
+            url 'https://mirrors.huaweicloud.com/repository/maven/'
+        }
 		jcenter()
     }
     task checkstyle(type: Checkstyle) {
@@ -42,7 +45,7 @@ allprojects {
         configFile file("huawei/config/checkstyle.xml")
 
         source 'entry/src/main/java'
-        source ':expandablerecyclerview/src/main/java'
+        source 'expandablerecyclerview/src/main/java'
         include '**/*.java'
 
         // empty classpath

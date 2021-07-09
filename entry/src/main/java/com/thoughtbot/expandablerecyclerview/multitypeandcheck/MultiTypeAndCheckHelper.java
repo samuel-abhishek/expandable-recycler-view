@@ -196,7 +196,7 @@ public class MultiTypeAndCheckHelper {
      * This method is used to add child items in list.
      *
      * @param actualPosition position of group item
-     * @param clickedItem    name of clicked item
+     * @param clickedItem name of clicked item
      */
     private void addChildItems(int actualPosition, String clickedItem, int itemPositionFromGroup) {
         String[] childItems = childItems().get(actualPosition);
@@ -211,7 +211,7 @@ public class MultiTypeAndCheckHelper {
     /**
      * This method is used to remove child item.
      *
-     * @param position    position of group item
+     * @param position position of group item
      * @param itemPositionFromGroup the position of the parent Item
      */
     private void removeChildItems(int position, int itemPositionFromGroup) {

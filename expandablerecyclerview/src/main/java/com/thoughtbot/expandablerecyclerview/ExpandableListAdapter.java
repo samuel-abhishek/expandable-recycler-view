@@ -35,10 +35,10 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
     /**
      * Constructor to get data from parent class.
      *
-     * @param context   context of view
+     * @param context context of view
      * @param layoutId resource layout to be drawn
-     * @param names     group item name to be displayed
-     * @param images    group item images to be displayed
+     * @param names group item name to be displayed
+     * @param images group item images to be displayed
      */
     protected ExpandableListAdapter(Context context, List<T> names, List<Integer> images, int layoutId) {
         this.mContext = context;
@@ -133,9 +133,9 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
         /**
          * This method is used to set text of the group & child items.
          *
-         * @param viewId   resource id of text
-         * @param text     string value to be displayed for group & child item
-         * @param color    text color for group& child item
+         * @param viewId resource id of text
+         * @param text string value to be displayed for group & child item
+         * @param color text color for group& child item
          * @param textSize text size for group& child item
          */
         public void setText(int viewId, String text, Color color, int textSize) {
@@ -150,7 +150,7 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
         /**
          * This method is to hide the check box.
          *
-         * @param viewId   resource id of check button
+         * @param viewId resource id of check button
          */
         public void makeInvisibleButton(int viewId) {
             if (getView(viewId) instanceof Checkbox) {
@@ -162,7 +162,7 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
         /**
          * This method is to hide the Image.
          *
-         * @param viewId  resource id of the image
+         * @param viewId resource id of the image
          */
         public void makeInvisibleImage(int viewId) {
             if (getView(viewId) instanceof Image) {
@@ -174,7 +174,7 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
         /**
          * This method is to check the Checkbox.
          *
-         * @param viewId   resource id of check button
+         * @param viewId resource id of check button
          */
         public void setChecked(int viewId) {
             if (getView(viewId) instanceof Checkbox) {
@@ -186,7 +186,7 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
         /**
          * This method is to uncheck the Checkbox.
          *
-         * @param viewId   resource id of check button
+         * @param viewId resource id of check button
          */
         public void setUnChecked(int viewId) {
             if (getView(viewId) instanceof  Checkbox) {
@@ -198,10 +198,10 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
         /**
          * This method is used to set image for group items.
          *
-         * @param viewId     view id if image
+         * @param viewId view id if image
          * @param imageResId image resource id to be displayed in image
-         * @param shape      background shape for image
-         * @param scaleMode  scale mode set on image
+         * @param shape background shape for image
+         * @param scaleMode scale mode set on image
          * @param groupImageColor color of the image
          */
         public void setGroupImage(int viewId, Integer imageResId,
@@ -222,7 +222,7 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
         /**
          * This method is used to set child item image.
          *
-         * @param viewId     view id for image
+         * @param viewId view id for image
          * @param imageResId image resource id to be set on image
          * @param height height of the image
          * @param margin margin for the image
@@ -261,7 +261,7 @@ public abstract class ExpandableListAdapter<T> extends BaseItemProvider {
          * This method will return the view based on id.
          *
          * @param viewId view id of component
-         * @param <E>    component to be return based on id
+         * @param <E> component to be return based on id
          * @return component
          */
         <E extends Component> E getView(int viewId) {

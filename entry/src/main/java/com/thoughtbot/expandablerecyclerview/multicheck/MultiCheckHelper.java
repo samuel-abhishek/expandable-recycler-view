@@ -131,14 +131,15 @@ public class MultiCheckHelper {
                     holder.makeInvisibleImage(ResourceTable.Id_ArrowIcon);
                     holder.setText(ResourceTable.Id_tvGroupTitle, text.getChildItem(), Color.BLACK,
                             ResUtil.getIntDimen(context, ResourceTable.Float_child_text_size));
-                    boolean isChecked = false;
+                    //if the current list item is present in mSelectedChild, then check it
+                    boolean isPresent = false;
                     for (int i = 0; i < mSelectedChild.size(); i++) {
                         if (mSelectedChild.get(i).isEquals(text)) {
-                            isChecked = true;
+                            isPresent = true;
                             break;
                         }
                     }
-                    if (isChecked) {
+                    if (isPresent) {
                         holder.setChecked(ResourceTable.Id_checkbtn);
                     } else {
                         holder.setUnChecked(ResourceTable.Id_checkbtn);
@@ -187,15 +188,15 @@ public class MultiCheckHelper {
 
         //To automatically check boston child item under Parent Rock
         bostonbtn.setClickedListener(component -> {
-            boolean isChecked = true;
+            boolean isPresent = false;
             ParentChild value = new ParentChild(valueRock, valueBoston);
             for (int i = 0; i < mSelectedChild.size(); i++) {
                 if (mSelectedChild.get(i).isEquals(value)) {
-                    isChecked = false;
+                    isPresent = true;
                     break;
                 }
             }
-            if (isChecked) {
+            if (!isPresent) {
                 mSelectedChild.add(new ParentChild(valueRock, valueBoston));
                 expandableListAdapter.setData(mGroupNameItem);
             } else {
@@ -208,7 +209,7 @@ public class MultiCheckHelper {
      * This method is used to add child items in list.
      *
      * @param actualPosition position of group item
-     * @param clickedItem    name of clicked item
+     * @param clickedItem name of clicked item
      */
     private void addChildItems(int actualPosition, String clickedItem, int itemPositionFromGroup) {
         String[] childItems = childItems().get(actualPosition);
@@ -223,7 +224,7 @@ public class MultiCheckHelper {
     /**
      * This method is used to remove child item.
      *
-     * @param position    position of group item
+     * @param position position of group item
      * @param itemPositionFromGroup the position of the parent Item
      */
     private void removeChildItems(int position, int itemPositionFromGroup) {
